@@ -1,5 +1,6 @@
 package com.mytoys.product.testing.integration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 public class ResponseTypeTest {
 
     public static final String HTTP_SERVICE_URL = "http://localhost:8080/product";
@@ -21,14 +23,14 @@ public class ResponseTypeTest {
     AssertRequestReturnsJSONData()
             throws ClientProtocolException, IOException {
 
-        // Given
+        log.info("preparing the rest call in AssertRequestReturnsJSONData");
         String jsonMimeType = "application/json";
         HttpUriRequest request = new HttpGet(HTTP_SERVICE_URL);
 
-        // When
+        log.info("make the rest call");
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-        // Then
+        log.info("make sure response is returned as JSON");
         String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
         assertEquals(jsonMimeType, mimeType);
     }
