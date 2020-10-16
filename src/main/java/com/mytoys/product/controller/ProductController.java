@@ -23,7 +23,7 @@ public class ProductController {
 
     // Single product retrieval
     @GetMapping("/product/{id}")
-    Product one(@PathVariable Long id) {
+    Product findProductById(@PathVariable Long id) {
 
         return productService.getProductById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));

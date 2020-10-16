@@ -36,7 +36,6 @@ public class CSVFileLoader {
             // read the data from the file
             List<Product> products = new CsvToBeanBuilder<Product>(reader).
                     withType(Product.class)
-                    .withSkipLines(1)
                     .build()
                     .parse();
             log.info("Successfully loaded the CSV file to the application. trying to save to Database ");

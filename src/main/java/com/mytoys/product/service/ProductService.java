@@ -36,9 +36,4 @@ public class ProductService {
         log.info("saving the list of products ");
         return repository.saveAll(products);
     }
-
-    public Product saveProduct(Product product) {
-        log.info("saving product " + product);
-        return repository.save(product);
-    }
 }
