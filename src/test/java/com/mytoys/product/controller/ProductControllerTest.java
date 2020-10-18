@@ -1,7 +1,7 @@
 package com.mytoys.product.controller;
 
 import com.mytoys.product.entity.Product;
-import com.mytoys.product.properties.ErrorProperties;
+import com.mytoys.product.config.ErrorConfig;
 import com.mytoys.product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,7 @@ class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    ErrorProperties errorProperties;
+    ErrorConfig errorConfig;
     @MockBean
     private ProductService productService;
 

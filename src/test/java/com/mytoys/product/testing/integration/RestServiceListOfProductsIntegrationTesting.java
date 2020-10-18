@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mytoys.product.ProductServiceApplication;
 import com.mytoys.product.TestUtils;
-import com.mytoys.product.properties.TestProperties;
+import com.mytoys.product.config.TestConfig;
 import com.mytoys.product.entity.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -28,7 +28,7 @@ import java.util.List;
 public class RestServiceListOfProductsIntegrationTesting {
 
     @Autowired
-    private TestProperties properties;
+    private TestConfig testConfig;
     @LocalServerPort
     private int port;
     @Autowired
@@ -39,7 +39,7 @@ public class RestServiceListOfProductsIntegrationTesting {
     public void AssertProductInformationIsRetrievedCorrectly() throws IOException {
 
         log.info("Making a rest call to test the Retrieve all products function");
-        String url = TestUtils.createURLWithPort(properties.getServer(), port, properties.getAllProducts());
+        String url = TestUtils.createURLWithPort(testConfig.getServer(), port, testConfig.getAllProducts());
         ResponseEntity<String> response = TestUtils.executeGetRequest(headers, restTemplate, url);
         List<Product> products = getProductsFromResponse(response);
         log.info("Asserting the List is not null");

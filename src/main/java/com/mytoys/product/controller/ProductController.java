@@ -2,12 +2,9 @@ package com.mytoys.product.controller;
 
 import com.mytoys.product.entity.Product;
 import com.mytoys.product.exception.ProductNotFoundException;
-import com.mytoys.product.properties.ErrorProperties;
-import com.mytoys.product.properties.TestProperties;
+import com.mytoys.product.config.ErrorConfig;
 import com.mytoys.product.service.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductController {
 
-    private ErrorProperties properties;
+    private ErrorConfig properties;
 
     private ProductService productService;
 

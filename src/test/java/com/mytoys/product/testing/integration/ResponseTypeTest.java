@@ -2,7 +2,7 @@ package com.mytoys.product.testing.integration;
 
 import com.mytoys.product.ProductServiceApplication;
 import com.mytoys.product.TestUtils;
-import com.mytoys.product.properties.TestProperties;
+import com.mytoys.product.config.TestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ResponseTypeTest {
 
     @Autowired
-    private TestProperties properties;
+    private TestConfig testConfig;
     @LocalServerPort
     private int port;
     @Autowired
@@ -37,7 +37,7 @@ public class ResponseTypeTest {
 
         log.info("Making the rest call in AssertRequestReturnsJSONData");
         String jsonMimeType = MediaType.APPLICATION_JSON_VALUE;
-        String url = TestUtils.createURLWithPort(properties.getServer(), port, properties.getAllProducts());
+        String url = TestUtils.createURLWithPort(testConfig.getServer(), port, testConfig.getAllProducts());
         ResponseEntity<String> response = TestUtils.executeGetRequest(headers, restTemplate, url);
 
         log.info("make sure response is returned as JSON");

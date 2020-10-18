@@ -1,4 +1,4 @@
-package com.mytoys.product.properties;
+package com.mytoys.product.config;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Getter
 @Setter
-public class TestProperties {
+public class TestConfig {
 
     @Value("${test.endpoint.products}")
     private String allProducts;

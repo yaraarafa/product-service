@@ -2,7 +2,7 @@ package com.mytoys.product.testing.integration;
 
 import com.mytoys.product.ProductServiceApplication;
 import com.mytoys.product.TestUtils;
-import com.mytoys.product.properties.TestProperties;
+import com.mytoys.product.config.TestConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.anyOf;
 public class RestServiceSingleProductIntegrationTesting {
 
     @Autowired
-    private TestProperties properties;
+    private TestConfig testConfig;
     @LocalServerPort
     private int port;
     @Autowired
@@ -35,12 +35,12 @@ public class RestServiceSingleProductIntegrationTesting {
     public void testRetrieveProduct() {
 
         log.info("making a Rest Call to fetch one product");
-        String url = TestUtils.createURLWithPort(properties.getServer(), port, properties.getOneProduct());
+        String url = TestUtils.createURLWithPort(testConfig.getServer(), port, testConfig.getOneProduct());
         ResponseEntity<String> response = TestUtils.executeGetRequest(headers, restTemplate, url);
 
 
         log.info("Asserting either the product data is returned correctly or a Not found String is returned ");
-        assertThat(response.getBody().toString(), anyOf(is(properties.getExpectedProduct()),
+        assertThat(response.getBody().toString(), anyOf(is(testConfig.getExpectedProduct()),
                 is("Could not find product with id = 33")));
     }
 

@@ -1,4 +1,4 @@
-package com.mytoys.product.properties;
+package com.mytoys.product.config;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "response.error.message")
 @Getter
 @Setter
-public class ErrorProperties {
+public class ErrorConfig {
     private String productNotFound;
     private String pathNotFound;
 }
