@@ -7,7 +7,7 @@
     - The file is loaded automatically when the application is run.
 
 ## Technology Stack
-    ### Frameworks, Languages and libraries:
+  ### Frameworks, Languages and libraries:
         - Spring Framework: is an application framework and inversion of control container for the Java platform.
         - Spring Boot: Spring Boot is an open source Java-based framework used to build 
             stand-alone and production ready spring applications. 
