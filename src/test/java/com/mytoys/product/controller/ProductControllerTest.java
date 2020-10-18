@@ -1,6 +1,7 @@
 package com.mytoys.product.controller;
 
 import com.mytoys.product.entity.Product;
+import com.mytoys.product.properties.ErrorProperties;
 import com.mytoys.product.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,8 @@ class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
+    ErrorProperties errorProperties;
+    @MockBean
     private ProductService productService;
 
     private List<Product> productList;
@@ -44,7 +47,6 @@ class ProductControllerTest {
     void getAllProducts() throws Exception {
         when(productService.listAllProducts()).thenReturn(productList);
         this.mockMvc.perform(get("/product"))
-                .andExpect(status().isOk())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", is(productList.size())));
     }
@@ -66,7 +68,7 @@ class ProductControllerTest {
     }
 
     @Test
-    void shouldReturn404WhenFindProductById() throws Exception {
+    void shouldReturn404WhenCannotFindProductById() throws Exception {
         final Long productId = 1L;
         when(productService.getProductById(productId)).thenReturn(Optional.empty());
 

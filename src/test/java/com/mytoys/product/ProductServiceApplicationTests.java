@@ -15,7 +15,7 @@ class ProductServiceApplicationTests {
     private ProductController controller;
 
     @Test
-    public void autowiring() throws Exception {
+    public void autoWiring() throws Exception {
         log.info("Asserting The Controller  is auto-wired with no problems");
         assertThat(controller).isNotNull();
     }

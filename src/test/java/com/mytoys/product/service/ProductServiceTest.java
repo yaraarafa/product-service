@@ -28,14 +28,14 @@ class ProductServiceTest {
 
     @BeforeEach
     void setUp() {
+        init();
+
         this.productList = new ArrayList<>();
         this.productList.add(new Product(1L, "TOY1", 10.0, 20.0, 10, "LEGO"));
         this.productList.add(new Product(2L, "TOY2", 15.0, 17.0, 2, "MY_TOYS"));
         this.productList.add(new Product(3L, "TOY3", 5.0, 7.5, 5, "ANY_BRAND"));
-
     }
 
-    @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
     }
@@ -71,11 +71,9 @@ class ProductServiceTest {
 
         productList = new ArrayList<>();
         when(productRepository.findAll()).thenReturn(productList);
-        List<Product> list = productService.listAllProducts();
-        assertEquals(list.size(), productList.size());
-        for (int i = 0; i < productList.size(); i++) {
-            assertEquals(list.get(i), productList.get(i));
-        }
+        List<Product> returnedLis = productService.listAllProducts();
+        assert(returnedLis.isEmpty());
+        assertEquals(returnedLis.size(), productList.size());
     }
 
     @Test

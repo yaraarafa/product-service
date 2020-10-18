@@ -1,5 +1,6 @@
-package com.mytoys.product.exception;
+package com.mytoys.product.exception.handler;
 
+import com.mytoys.product.exception.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

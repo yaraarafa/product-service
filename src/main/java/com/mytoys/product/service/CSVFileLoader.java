@@ -2,9 +2,7 @@ package com.mytoys.product.service;
 
 import com.mytoys.product.config.CSVConfig;
 import com.mytoys.product.entity.Product;
-import com.mytoys.product.exception.DataLoadingException;
 import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -34,8 +32,8 @@ public class CSVFileLoader {
             // create a reader
             Reader reader = Files.newBufferedReader(Paths.get(completeFileName));
             // read the data from the file
-            List<Product> products = new CsvToBeanBuilder<Product>(reader).
-                    withType(Product.class)
+            List<Product> products = new CsvToBeanBuilder<Product>(reader)
+                    .withType(Product.class)
                     .build()
                     .parse();
             log.info("Successfully loaded the CSV file to the application. trying to save to Database ");

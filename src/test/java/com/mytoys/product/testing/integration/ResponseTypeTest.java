@@ -1,37 +1,47 @@
 package com.mytoys.product.testing.integration;
 
+import com.mytoys.product.ProductServiceApplication;
+import com.mytoys.product.TestUtils;
+import com.mytoys.product.properties.TestProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.entity.ContentType;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = ProductServiceApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ResponseTypeTest {
 
-    public static final String HTTP_SERVICE_URL = "http://localhost:8080/product";
+    @Autowired
+    private TestProperties properties;
+    @LocalServerPort
+    private int port;
+    @Autowired
+    private TestRestTemplate restTemplate;
+    private HttpHeaders headers = new HttpHeaders();
+
 
     @Test
     public void
-    AssertRequestReturnsJSONData()
-            throws ClientProtocolException, IOException {
+    AssertRequestReturnsJSONData() {
 
-        log.info("preparing the rest call in AssertRequestReturnsJSONData");
-        String jsonMimeType = "application/json";
-        HttpUriRequest request = new HttpGet(HTTP_SERVICE_URL);
-
-        log.info("make the rest call");
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+        log.info("Making the rest call in AssertRequestReturnsJSONData");
+        String jsonMimeType = MediaType.APPLICATION_JSON_VALUE;
+        String url = TestUtils.createURLWithPort(properties.getServer(), port, properties.getAllProducts());
+        ResponseEntity<String> response = TestUtils.executeGetRequest(headers, restTemplate, url);
 
         log.info("make sure response is returned as JSON");
-        String mimeType = ContentType.getOrDefault(response.getEntity()).getMimeType();
-        assertEquals(jsonMimeType, mimeType);
+        MediaType mimeType = response.getHeaders().getContentType();
+        assertEquals(jsonMimeType, mimeType.toString());
     }
 }
