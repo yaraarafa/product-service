@@ -35,14 +35,14 @@
             java -jar target/product-service-0.0.1-SNAPSHOT.jar
      
  ## Docker Run
-    To run using Dockers build a local image using the below command:
-    docker build -t mytoys/product-service .
+   - To run using Dockers build a local image using the below command:
+        "docker build -t mytoys/product-service ."
     
-    Then run using the below command:
-    docker run -p 8080:8080 mytoys/product-service
+   - Then run using the below command:
+        "docker run -p 8080:8080 mytoys/product-service"
     
-    Note: Change the file path in the application.properties as described in the comments so that the CSV file
-    can be loaded (csv.file.load.path=tmp/) and change the desired file path in the Dockerfile. 
+   - Note: Change the file path in the application.properties as described in the comments so that the CSV file
+         can be loaded (csv.file.load.path=tmp/) and change the desired file path in the Dockerfile. 
 
 ## Available Endpoints
     - /product : returns a List of all the products listed in the loaded CSV file in JSON format
