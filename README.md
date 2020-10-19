@@ -24,7 +24,7 @@
         - openCSV: Opencsv is an easy-to-use CSV (comma-separated values) parser library for Java.
         - JUnit and SpringBootTest are used for Testing.
     
-## Run and Deploy
+## Normal Run and Deploy
     - Change the file name and directory from the src/main/resources/application.properties 
         and src/test/resources/application.properties files and place the csv file at that location.
     - Change the test parameters for the server if it will not be run on  localhost at both files
@@ -32,8 +32,17 @@
         - Run the below maven command and get a Jar that includes all the other dependencies and things like your web server inside the archive.
             mvn clean install
         - Run the below command and it will run your entire Spring application with no fuss: no setup, no web server configuration
-            java -jar ...your.jar.
+            java -jar target/product-service-0.0.1-SNAPSHOT.jar
      
+ #### Docker Run
+    To run using Dockers build a local image using the below command:
+    docker build -t mytoys/product-service .
+    
+    Then run using the below command:
+    docker run -p 8080:8080 mytoys/product-service
+    
+    Note: Change the file path in the application.properties as described in the comments so that the CSV file
+    can be loaded (csv.file.load.path=tmp/) and change the desired file path in the Dockerfile. 
 
 ## Available Endpoints
     - /product : returns a List of all the products listed in the loaded CSV file in JSON format
