@@ -32,7 +32,7 @@
         - Run the below maven command and get a Jar that includes all the other dependencies and things like your web server inside the archive.
             mvn clean install
         - Run the below command and it will run your entire Spring application with no fuss: no setup, no web server configuration
-            java -jar ...your.jar.
+            java -jar target/product-service-0.0.1-SNAPSHOT.jar
      
 
 ## Available Endpoints
