@@ -34,7 +34,7 @@
         - Run the below command and it will run your entire Spring application with no fuss: no setup, no web server configuration
             java -jar target/product-service-0.0.1-SNAPSHOT.jar
      
- #### Docker Run
+ ## Docker Run
     To run using Dockers build a local image using the below command:
     docker build -t mytoys/product-service .
     
